@@ -1,8 +1,8 @@
 import React from 'react'
 import { useChatStore } from '../store/useChatStore';
 import { useAuthStore } from '../store/useAuthStore';
-import { X } from 'lucide-react';
-import VideoCallFeature from './VideoCallFeature';
+import { Video, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function ChatHeader() {
     const { selectedUser, setSelectedUser } = useChatStore();
@@ -30,7 +30,10 @@ function ChatHeader() {
   
           {/* Close button */}
           <button onClick={() => setSelectedUser(null)}>
-            <VideoCallFeature />
+            {/* <VideoCallFeature /> */}
+            <Link to="/video-call">
+              <Video/>
+            </Link>
             <X />
           </button>
         </div>

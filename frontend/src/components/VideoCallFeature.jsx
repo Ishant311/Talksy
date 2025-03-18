@@ -73,14 +73,14 @@ function VideoCallFeature() {
     }
   return (
     <div>
-    <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />
-    {callAccepted && <video playsInline ref={userVideo} autoPlay style={{ width: "300px" }} />}
-    <br />
-    {receivingCall && !callAccepted ? (
-      <button onClick={acceptCall}>Accept Call</button>
-    ) : (
-      <button onClick={() => callUser(selectedUser._id)}>Call User</button>
-    )}
+      <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />
+      {callAccepted && <video playsInline ref={userVideo} autoPlay style={{ width: "300px" }} />}
+      <br />
+      {receivingCall && !callAccepted ? (
+        <button onClick={acceptCall}>Accept Call</button>
+      ) : (
+        <button onClick={() => callUser(selectedUser._id)}>Call User</button>
+      )}
   </div>
   )
 }
