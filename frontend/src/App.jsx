@@ -17,6 +17,7 @@ import { useChatStore } from "./store/useChatStore"
 function App() {
   const {authUser,checkAuth,isCheckingAuth} = useAuthStore();
   const {selectedUser} = useChatStore();
+  console.log(selectedUser);
   useEffect(()=>{
     checkAuth()
   },[])
