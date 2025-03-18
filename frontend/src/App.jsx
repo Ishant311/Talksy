@@ -11,10 +11,12 @@ import { Loader } from "lucide-react"
 import { Toaster } from "react-hot-toast"
 import { useThemeStore } from "./store/useThemeStore"
 import VideoCallFeature from "./components/VideoCallFeature"
+import { useChatStore } from "./store/useChatStore"
 
 
 function App() {
-  const {authUser,checkAuth,isCheckingAuth,onlineUsers} = useAuthStore();
+  const {authUser,checkAuth,isCheckingAuth} = useAuthStore();
+  const {selectedUser} = useChatStore();
   useEffect(()=>{
     checkAuth()
   },[])
@@ -35,7 +37,7 @@ function App() {
         <Route path = "/signup" element={!authUser? <Signup/> : <Navigate to="/" />}/>
         <Route path = "/login" element={!authUser? <Login/> : <Navigate to="/" />}/>
         <Route path = "/settings" element={<Settings/>}/>
-        <Route path = "/video-call" element={authUser ? <VideoCallFeature/>: <Navigate to="/login"/>}/>
+        <Route path = "/video-call" element={authUser && selectedUser != null ? <VideoCallFeature/>: <Navigate to="/"/>}/>
         <Route path = "/profile" element={authUser ? <Profile/> : <Navigate to="/login" />}/>
       </Routes>
       <Toaster />

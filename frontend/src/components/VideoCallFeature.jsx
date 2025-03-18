@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Peer } from "simple-peer";
 import { useAuthStore } from '../store/useAuthStore';
+import { useChatStore } from '../store/useChatStore';
 
 function VideoCallFeature() {
-    const {socket,selectedUser} = useAuthStore();
+    const {socket} = useAuthStore();
+    const {selectedUser} = useChatStore();
     const [stream,setStream] = useState(null);
     const [caller,setCaller] = useState("");
     const [receivingCall, setReceivingCall] = useState(false);
