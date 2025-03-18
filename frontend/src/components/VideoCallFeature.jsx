@@ -3,7 +3,7 @@ import { Peer } from "simple-peer";
 import { useAuthStore } from '../store/useAuthStore';
 
 function VideoCallFeature() {
-    const {socket} = useAuthStore();
+    const {socket,selectedUser} = useAuthStore();
     const [stream,setStream] = useState(null);
     const [caller,setCaller] = useState("");
     const [receivingCall, setReceivingCall] = useState(false);
@@ -73,14 +73,13 @@ function VideoCallFeature() {
     }
   return (
     <div>
-    <h2>Video Call</h2>
     <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />
     {callAccepted && <video playsInline ref={userVideo} autoPlay style={{ width: "300px" }} />}
     <br />
     {receivingCall && !callAccepted ? (
       <button onClick={acceptCall}>Accept Call</button>
     ) : (
-      <button onClick={() => callUser("other-user-id")}>Call User</button>
+      <button onClick={() => callUser(selectedUser._id)}>Call User</button>
     )}
   </div>
   )
