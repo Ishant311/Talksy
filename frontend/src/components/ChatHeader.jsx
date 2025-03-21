@@ -30,9 +30,7 @@ function ChatHeader() {
 
           <div className='flex items-center gap-3'>
             {/* Video call button */}
-            <Link to="/video-call">
-              <Video />
-            </Link>
+            <Video />
             {/* Close button */}
             <button onClick={() => setSelectedUser(null)}>
               <X />

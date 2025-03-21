@@ -5,6 +5,10 @@ import { io } from "socket.io-client"
 
 const baseUrl = import.meta.env.MODE === "development" ? "http://localhost:8080" : "/";
 export const useAuthStore = create((set,get)=>({
+    isSendingOtp:false,
+    otpSend : false,
+    isVerifyingOtp:false,
+    otpVerified:false,
     authUser:null,
     isSigningUp:false,
     isLoggingIn:false,
@@ -21,6 +25,38 @@ export const useAuthStore = create((set,get)=>({
             set({authUser:null})
         } finally{
             set({isCheckingAuth:false});
+        }
+    },
+    checkOtp:async()=>{
+        try {
+            const res = await axiosInstance.get("/auth/check-otp");
+            set({otpVerified:true});
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    sendOtp : async (email)=>{
+        set({isSendingOtp:true});
+        try {
+            const res = await axiosInstance.post("/auth/send-otp",{email});
+            toast.success(res.data.message);
+            set({otpSend:true});
+        } catch (error) {
+            toast.error(error.response.data.message)
+        }finally{
+            set({isSendingOtp:false});
+        }
+    },
+    verifyOtp : async(otp,email)=>{
+        set({isVerifyingOtp:true});
+        try {
+            const res = await axiosInstance.post("/auth/verify-otp",{userTypedOtp:otp,email});
+            toast.success(res.data.message);
+            set({otpVerified:true});
+        } catch (error) {
+            toast.error(error.response.data.message)
+        } finally{
+            set({isVerifyingOtp:false});
         }
     },
     signup:async (data)=>{

@@ -28,15 +28,6 @@ io.on("connection",(socket)=>{
     }
     io.emit("getOnlineUsers",Object.keys(userSocketMap));
 
-    socket.on("call-user", (data) => {
-      io.to(userSocketMap[data.userToCall]).emit("incoming-call", { from: data.from, signal: data.signal });
-    });
-  
-    socket.on("accept-call", (data) => {
-      io.to(data.to).emit("call-accepted", data.signal);
-    });
-
-
     socket.on("disconnect",()=>{
         console.log("A user disconnected",socket.id);
         delete userSocketMap[userId];
