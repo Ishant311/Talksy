@@ -28,14 +28,13 @@ function ChatHeader() {
             </div>
           </div>
 
-          <div className='flex items-center gap-3'>
+          {/* <div className='flex items-center gap-3'> */}
             {/* Video call button */}
-            <Video />
+            {/* <Video /> */}
             {/* Close button */}
             <button onClick={() => setSelectedUser(null)}>
               <X />
             </button>
-          </div>
         </div>
       </div>
     );

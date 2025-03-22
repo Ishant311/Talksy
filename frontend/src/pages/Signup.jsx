@@ -149,6 +149,7 @@ function Signup() {
                                         onChange={(e) => {
                                             setOtp(e.target.value)
                                         }}
+                                        maxLength={6}
                                         placeholder='Enter OTP'
                                         className='input input-bordered w-full'
                                     />

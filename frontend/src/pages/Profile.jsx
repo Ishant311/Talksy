@@ -18,7 +18,7 @@ function Profile() {
     }
   }
   return (
-    <div className='flex flex-col items-center gap-4 pt-20'>
+    <div className='flex flex-col items-center gap-4 pt-20 h-screen'>
 
       <div className='flex flex-col items-center justify-center p-2 sm:p-4 gap-3 bg-base-300 w-80 sm:w-125 rounded-lg m-auto'>
         <div className='flex flex-col items-center gap-3'>

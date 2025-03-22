@@ -4,6 +4,7 @@ import { useAuthStore } from "./useAuthStore";
 export const useChatStore = create((set,get)=>({
     messages:[],
     users:[],
+    searchUsers:[],
     selectedUser:null,
     isUsersLoading:false,
     isMessagesLoading:false,
@@ -57,5 +58,15 @@ export const useChatStore = create((set,get)=>({
     },
     setSelectedUser:(user)=>{
         set({selectedUser:user});
+    },
+    getSearchUsers:async(searchVal)=>{
+        try {
+            const res = await axiosInstance.post(`/auth/search-user`,{
+                searchQuery:searchVal
+            });
+            set({searchUsers:res.data});
+        } catch (error) {
+            console.log(error)
+        }
     }
 }))
